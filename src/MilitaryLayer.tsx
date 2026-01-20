@@ -3,37 +3,12 @@ import { GeoJSON, useMap } from "react-leaflet";
 import axios from "axios";
 import osmtogeojson from "osmtogeojson";
 import L from "leaflet";
-
-
-type MilitaryType =
-  | "barracks"
-  | "naval_base"
-  | "airfield"
-  | "training_area"
-  | "range"
-  | "bunker"
-  | "danger_area"
-  | "checkpoint"
-  | "office";
+import type { MilitaryType } from "./types/militaryTypes";
+import { MILITARY_LABELS} from "./types/MilitaryConst"; 
+import { MILITARY_TYPES } from "./types/MilitaryConst";
 
 type GeoJSONData = GeoJSON.FeatureCollection;
 
-const MILITARY_TYPES: MilitaryType[] = [
-  "barracks", "naval_base", "airfield", "training_area",
-  "range", "bunker", "danger_area", "checkpoint", "office"
-];
-
-const MILITARY_LABELS: Record<MilitaryType, string> = {
-  barracks: "Koszary",
-  naval_base: "Baza morska",
-  airfield: "Lotnisko wojskowe",
-  training_area: "Poligon",
-  range: "Strzelnica",
-  bunker: "Bunkier",
-  danger_area: "Strefa niebezpieczna",
-  checkpoint: "Punkt kontrolny",
-  office: "Biuro/Dowództwo"
-};
 
 export default function MilitaryOSMLayer() {
   const [militaryType, setMilitaryType] = useState<MilitaryType>("naval_base");
